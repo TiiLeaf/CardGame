@@ -1,0 +1,180 @@
+.card {
+    transition-duration: 0.1s;
+    transition-property: transform;
+    width: 192px;
+    height: 256px;
+    position: relative;
+    user-select: none;
+    display: inline-block;
+}
+
+.player>.hand>.card:hover {
+    cursor: pointer;
+    transform: scale(1.15) translateY(-16px);
+}
+
+.player>.hand>.card:nth-child(n+5) {
+    margin-top: -200px;
+}
+
+.cardBack {
+    background-image: url('../res/img/cardBack.png');
+    background-size: cover;
+    width: 128px;
+    height: 171px;
+    border-radius: 6px;
+}
+
+.cardArt {
+    z-index: 1;
+    background-image: url('../res/img/bg.png');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 32px;
+    left: 14px;
+    width: 164px;
+    height: 100px;
+}
+
+.cardContent,
+.shopCardContent {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+
+    color: black;
+    background-image: url('../res/img/cardFront.png');
+    background-size: cover;
+    border-radius: 6px;
+}
+
+.cardContent>.name,
+.shopCardContent>.name {
+    position: absolute;
+    top: 13px;
+    left: 15px;
+}
+
+.cardContent>.cost,
+.shopCardContent>.cost {
+    position: absolute;
+    top: 8px;
+    right: 21px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4b4005;
+}
+
+.cardContent>.type,
+.shopCardContent>.type {
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9em;
+}
+
+.cardContent>.description {
+    position: absolute;
+    top: 154px;
+    width: 100%;
+    padding: 0px 20px 0px 20px;
+    line-height: 90%;
+    text-align: center;
+}
+
+.cardTiny {
+    scale: 0.3;
+}
+
+.shopCard {
+    position: relative;
+    width: 192px;
+    height: 160px;
+    transform: scale(0.75);
+    transform-origin: top left;
+}
+
+.shopCardContent {
+    background-image: url('../res/img/shopCardFront.png');
+}
+
+.resourceShopCard > .shopCardContent {
+    background-image: url('../res/img/smallShopCardFront.png');
+}
+
+.resourceShopCard {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    transform: scale(0.75);
+    transform-origin: top left;
+}
+
+.resourceShopCard > .cardArt {
+    width: 130px;
+}
+
+#tableCards > .card {
+    margin-left: -80px;
+}
+
+.pileCount, .shopCardContent > .count {
+    color: white;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0px 0px -12px;
+    background-color: rgba(0, 112, 0, 1);
+    border-radius: 50%;
+    font-size: 1.2em;
+    z-index: 40;
+    font-family: 'Be Vietnam Pro', sans-serif
+}
+
+.shopCardContent > .count {
+    top: auto;
+    left: auto;
+    bottom: 2px;
+    right: 2px;
+    transform: scale(1.3);
+}
+
+.resourceShopCard > .shopCardContent > .count {
+    bottom: 8px;
+    right: 8px;  
+}
+
+.highlight {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent;
+    z-index: 100;
+}
+
+.spellHighlight {
+    border: 2px solid var(--spell-highlight-color);
+}
+.resourceHighlight {
+    border: 2px solid var(--resource-highlight-color);
+}
+
+.descriptionIcon {
+    width: 1.1em;
+    height: 1.1em;
+    position: relative;
+    top: 3px;
+}

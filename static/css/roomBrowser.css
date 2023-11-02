@@ -1,0 +1,49 @@
+.roomBrowserRoot {
+    width: 100%;
+    height: 100%;
+    padding: 16px 32px 0px 32px;
+    text-align: center;
+}
+
+.roomBrowserRoot > div > h2 {
+    border-bottom: 2px solid white;
+    padding-bottom: 2px;
+    margin-bottom: 8px;
+}
+
+
+.roomBrowserRoot > div {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    padding: 2px 16px 16px 16px;
+    margin: 8px;
+}
+
+.roomBrowserInput {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    text-align: center;
+    font-family: 'Be Vietnam Pro Light', sans-serif;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#joinRoomError {
+    margin-top: 12px;
+    font-size: 1.1em;
+    background-color: rgb(85, 12, 12);
+    border-radius: 10px;
+    font-family: 'Be Vietnam Pro Light', sans-serif;
+    padding: 0px 8px 0px 8px;
+}
+
+/* Fade-Out Effect */
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}

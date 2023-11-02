@@ -1,0 +1,45 @@
+.logPanel {
+    flex-grow: 1;
+    width: 100%;
+    border-bottom: 1px solid white;
+}
+
+.chatPanel {
+    flex-grow: 0;
+    flex-basis: 380px;
+    height: 380px;
+    width: 100%;
+    position: relative;
+}
+
+.log, .chat {
+    padding-left: 6px;
+    font-family: 'Be Vietnam Pro Light', sans-serif;
+    font-size: 0.88em;
+    overflow-y: scroll;
+    word-wrap: break-word;
+}
+
+.log {
+    height: calc(100vh - 380px);
+}
+
+.chat {
+    height: calc(100% - 20px);
+}
+
+.chatForm {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+.chatForm > input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+}

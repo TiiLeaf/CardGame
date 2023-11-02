@@ -1,0 +1,273 @@
+.player, .enemy {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.player > .character {
+    bottom: 112px;
+}
+
+.enemy > .character {
+    top: 112px;
+}
+
+.character {
+    position: absolute;
+    left: 40px;
+    text-align: center;
+}
+
+.playerName {
+    font-size: 1.3em;
+    width: 80px;
+    text-align: center;
+}
+
+.hp {
+    font-size: 1.3em;
+    background-color: black;
+    border: 2px solid gold;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.status {
+    background-color: rgb(0, 0, 0);
+    border: 2px solid gold;
+    border-left: 0px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    width: 42px;
+    position: relative;
+    top: -36px;
+    left: -18px;
+    z-index: 1;
+}
+
+.status > p {
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    padding-top: 1px;
+    margin-top: 4px;
+    margin-left: 18px;
+    font-weight: bold;
+}
+
+.bleed {
+    background-image: url('../res/img/bleed.png');
+}
+
+.sick {
+    background-image: url('../res/img/sick.png');
+}
+
+.weak {
+    background-image: url('../res/img/weak.png');
+}
+
+.character > div > .portrait {
+    width: 80px;
+    height: 96px;
+    background-image: url('../res/img/characters/mage.png');
+    background-position: center;
+    background-size: cover;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border: 2px solid gold;
+    position: relative;
+    z-index: 2;
+}
+
+.player {
+    overflow: hidden;
+}
+
+.player > .hand {
+    height: 272px;
+    position: absolute;
+    bottom: 0px;
+    left: 168px;
+    width: calc(100% - 168px);
+    min-width: calc(100% - 168px);;
+    padding-bottom: 16px;
+    text-align: center;
+    z-index: 70;
+}
+
+.enemy > .piles {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.player > .piles {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+}
+
+.piles :first-child {
+    margin-right: 16px;
+}
+
+.piles > div {
+    display: inline-block;
+} 
+
+.discard, .draw {
+    width: 56px;
+    height: 75px;
+    position: relative;
+    border: 2px dashed white;
+    border-radius: 4px;
+}
+
+.discard > .card {
+    transform-origin: top left;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+}
+
+.draw > .cardBack {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 58px;
+    height: 77px;
+}
+
+.enemy > .hand {
+    position: absolute;
+    top: -100px;
+    left: 168px;
+    width: calc(100% - 168px);
+    min-width: calc(100% - 168px);
+    text-align: center;
+}
+
+.enemy > .hand > .cardBack {
+    display: inline-block;
+    margin-left: -80px;
+}
+
+.enemy > .hand :first-child {
+    margin-left: 0px;
+}
+
+.shop {
+    position: absolute;
+    top: 100px;
+    width: calc(100% - 168px);
+    left: 168px;
+    display: flex;
+    justify-content: center;
+}
+
+.spellShop {
+    display: grid;
+    grid-template-columns: repeat(5, 144px);
+    grid-template-rows: repeat(2, 120px);
+    width: calc(5 * 147px); /*gap factored in*/
+    gap: 3px;
+}
+
+.resourceShop {
+    display: grid;
+    grid-template-columns: repeat(2, 120px);
+    grid-template-rows: repeat(3, 120px);
+    width: calc(2*123px); /*gap factored in*/
+    gap: 3px;
+    margin-top: -58px;
+}
+
+.table {
+    position: absolute;
+    bottom: 333px;
+    left: 168px;
+    width: calc(100% - 168px);
+    height: 192px;
+}
+
+.turnReadout {
+    position: absolute;
+    bottom: -52px;
+    height: 48px;
+    left: 32px;
+    width: calc(100% - 64px);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    z-index: 60;
+    display: flex;
+    text-align: center;
+}
+
+.mana, .gold {
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    background-position: center;
+    background-size: cover;
+    font-weight: bolder;
+    font-size: 1.6em;
+    padding-left: 1px;
+    margin-left: 12px;
+}
+
+.mana {
+    background-image: url('../res/img/mana.png');
+    color: #0d1b46;
+}
+
+.gold {
+    background-image: url('../res/img/gold.png');
+    color: #4b4005;
+}
+
+.turnCurrencies {
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-top: 8px;
+}
+
+.turnButton {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 100%;
+    width: 96px;
+    font-size: 1.2em;
+    padding-top: 11px;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+}
+
+.turnButton:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+
+.prompt {
+    margin-top: 9px;
+    flex-grow: 2;
+    flex-basis: 1000px;
+    font-size: 1.3em;
+}
+
+.gameButtons {
+    position: absolute;
+    left: 16px;
+    top: 280px;
+    bottom: 280px;
+    width: 130px;
+    z-index: 80;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
