@@ -1,6 +1,6 @@
 .card {
     transition-duration: 0.1s;
-    transition-property: transform;
+    transition-property: none;
     width: 192px;
     height: 256px;
     position: relative;
@@ -99,6 +99,10 @@
     transform-origin: top left;
 }
 
+.shopCard:hover, .resourceShopCard:hover {
+    cursor: pointer;
+}
+
 .shopCardContent {
     background-image: url('../res/img/shopCardFront.png');
 }
@@ -119,8 +123,12 @@
     width: 130px;
 }
 
+#tableCards {
+    margin-top: -32px;
+}
+
 #tableCards > .card {
-    margin-left: -80px;
+    margin-left: -100px;
 }
 
 .pileCount, .shopCardContent > .count {

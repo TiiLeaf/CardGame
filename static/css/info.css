@@ -15,7 +15,7 @@
 .log, .chat {
     padding-left: 6px;
     font-family: 'Be Vietnam Pro Light', sans-serif;
-    font-size: 0.88em;
+    font-size: 0.8em;
     overflow-y: scroll;
     word-wrap: break-word;
 }

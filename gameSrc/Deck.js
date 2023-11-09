@@ -1,9 +1,16 @@
 class Deck {
-    constructor(cards) {
+    constructor(cards, replenishDeck) {
         if (cards)
             this.contents = cards;
         else
             this.contents = [];
+
+        if (replenishDeck)
+            this.replenishDeck = replenishDeck;
+        else {
+            this.replenishDeck = {};
+            this.replenishDeck.contents = [];   
+        }
     }
 
     draw(count) {
@@ -17,9 +24,15 @@ class Deck {
         return result;
     }
 
-    replenishFromDiscard(discard) {
-        this.contents = [...discard];
+    replenishFromDiscard() {
+        console.log('Replinished from discard');
+        this.contents = [...this.replenishDeck.contents];
         this.shuffle();
+    }
+
+    add(cards) {
+        for (var card of cards)
+            this.contents.push(card);
     }
 
     shuffle() {

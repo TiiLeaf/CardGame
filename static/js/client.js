@@ -48,7 +48,7 @@ socket.on('initialGameState', (data) => {
         domHandles.enemyHand.appendChild(createCardBack());
 
     //draw my cards
-    multiDraw(data[`player${playerIndex}Hand`]);
+    multiDrawAnimation(data[`player${playerIndex}Hand`]);
 });
 
 socket.on('prompt', (msg) => {
@@ -65,14 +65,36 @@ socket.on('startTurn', (playingIndex) => {
     domHandles.gold.textContent = turn.gold;
 });
 
-socket.on('startActions', () => {
+socket.on('startSpells', () => {
     turn.phase = 0;
     highlightCards('spell', 'green');
 });
 
-socket.on('startBuys', () => {
+socket.on('startResources', () => {
     turn.phase = 1;
     highlightCards('resource', 'green');
+});
+
+socket.on('startBuys', () => {
+    turn.phase = 2;
+    turn.clickAction = 'buy';
+    highlightShopCards(turn.gold);
+});
+
+socket.on('cleanup', (newHand) => {
+    turn.phase = 3;
+    turn.clickAction = 'none';
+    highlightShopCards(99);
+    highlightCards('hand', 'transparent');
+
+    discardTableAnimation();
+    discardEntireHandAnimation();
+    console.log('newHand', newHand);
+    multiDrawAnimation(newHand);
+});
+
+socket.on('enemyCleanup', () => {
+    discardTableAnimation();
 });
 
 function tryToPlay(card, callback) {
@@ -90,22 +112,40 @@ function tryToBuy(card, callback) {
 }
 
 socket.on('cardPlayed', (data) => {
-    console.log(data);
-
     turn.cardsPlayed += 1;
     //show the card the enemy played
     if (!turn.isMyTurn) {
-        var cardElt = createCard(data.card);
-        cardElt.style.zIndex = 1;
-        cardElt.style.position = 'fixed';
-        var coords = domHandles.table.getBoundingClientRect();
-        cardElt.style.top = `${(turn.cardsPlayed % 4) * 22 + coords.top}px`;
-        cardElt.style.left = `${((turn.cardsPlayed * 40)%(coords.width-200)) + coords.left}px`;
-        cardElt.style.transformOrigin = "top left";
-        cardElt.style.transform = "scale(0.65)";
-        domHandles.table.appendChild(cardElt);
+        enemyPlayAnimation(data.card);
     }
     //update turn resources readout
     domHandles.mana.textContent = data.turnDetails.mana;
+    turn.mana = data.turnDetails.mana;
     domHandles.gold.textContent = data.turnDetails.gold;
+    turn.gold = data.turnDetails.gold;
 });
+
+
+function cardClicked(cardObj, cardElt) {
+    //trash is unplayable
+    if (cardObj.type == CardTypes.TRASH)
+        return;
+
+    //we are trying to buy a card
+    if (turn.clickAction == 'buy') {
+        tryToBuy(cardObj, ()=>{
+            buyAnimation(cardElt);
+        });
+    }
+
+    //we are trying to play a card
+    if (turn.clickAction == 'play' && !animationInProgress) { //TODO: refactor animationInProgress out
+        if (cardObj.type == CardTypes.SPELL && turn.phase != 0)
+            return;
+        if (cardObj.type == CardTypes.RESOURCE && turn.phase != 1)
+            return;
+
+        tryToPlay(cardObj, ()=>{
+            playAnimation(cardElt);
+        });
+    }
+}
