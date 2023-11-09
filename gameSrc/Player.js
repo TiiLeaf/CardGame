@@ -52,6 +52,13 @@ class Player {
         return true;
     }
 
+    noResourcesInHand() {
+        for (var card of this.hand.contents)
+            if (card.type == CardTypes.RESOURCE)
+                return false;
+        return true;
+    }
+
     cardInHand(card) {
         for (var c of this.hand.contents)
             if (c.name == card.name && c.id == card.id && c.useCost == card.useCost)

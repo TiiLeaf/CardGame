@@ -95,7 +95,7 @@ io.on('connection', (socket) => {
     socket.on('playCard', (card, ack) => {
         //verify that the player actually has the card in hand and that they have enough mana
         var game = rooms[socket.room].game;
-        if (game.players[game.turn].cardInHand(card) && game.players[game.turn].turn.mana >= card.useCost) {
+        if (game.players[game.activePlayer].cardInHand(card) && game.players[game.activePlayer].turn.mana >= card.useCost) {
             game.playCard(card);
             ack(true);
         } else {
@@ -104,9 +104,9 @@ io.on('connection', (socket) => {
     });
 
     socket.on('buyCard', (card, ack) => {
-        //verify that the shop actually has the card and that the player has enough gold
+        //verify that the shop actually has the card and that the player has enough gold and buys left
         var game = rooms[socket.room].game;
-        if (game.shopHasCard(card) && game.players[game.turn].turn.gold >= card.buyCost) {
+        if (game.shopHasCard(card) && game.players[game.activePlayer].turn.gold >= card.buyCost && game.players[game.activePlayer].turn.buys >= 1) {
             game.buyCard(card);
             ack(true);
         } else {

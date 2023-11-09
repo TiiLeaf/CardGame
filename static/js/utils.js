@@ -41,7 +41,8 @@ function getDomHandles() {
     domHandles.playerDeckCount = document.getElementsByClassName('pileCount')[2];
     domHandles.playerDeckVisualizer = document.getElementsByClassName('pileVisualizer')[1];
     domHandles.playerHand = document.getElementsByClassName('hand')[1];
-
+    domHandles.playerDiscardCount = document.getElementsByClassName('pileCount')[3];
+    domHandles.playerDiscardVisualizer = document.getElementsByClassName('discardVisualizer')[1];
 
     domHandles.enemyName = document.getElementsByClassName('playerName')[0];
     domHandles.enemyHp = document.getElementsByClassName('hp')[0];
@@ -52,6 +53,8 @@ function getDomHandles() {
     domHandles.enemyDeckCount = document.getElementsByClassName('pileCount')[0];
     domHandles.enemyDeckVisualizer = document.getElementsByClassName('pileVisualizer')[0];
     domHandles.enemyHand = document.getElementsByClassName('hand')[0];
+    domHandles.enemyDiscardCount = document.getElementsByClassName('pileCount')[1];
+    domHandles.enemyDiscardVisualizer = document.getElementsByClassName('discardVisualizer')[0];
 
     domHandles.spellShop = document.getElementById("spellShop");
     domHandles.resourceShop = document.getElementById("resourceShop");
@@ -88,6 +91,10 @@ function addShopCard(cardObj, resourceCard = false) {
     name.textContent = cardObj.name;
     type.textContent = CardTypeNames[cardObj.type];
     count.textContent = 10;
+
+    cardElt.addEventListener('click', (e) => {
+        cardClicked(cardObj, e.target.parentElement);
+    });
     //cardArt.style.backgroundImage = `url(../res/img/cards/${cardObj.name.toLowerCase()}.png)`;
     content.appendChild(cost);
     content.appendChild(name);
@@ -141,18 +148,4 @@ function createCardBack() {
     var cardElt = document.createElement('div');
     cardElt.classList.add('cardBack');
     return cardElt;
-}
-
-function highlightCards(type, value='green') {
-    type = type.toLocaleLowerCase();
-    var root = document.querySelector(':root');
-
-    if (type == 'all') {
-        root.style.setProperty(`--spell-highlight-color`, value);
-        root.style.setProperty(`--resource-highlight-color`, value);
-    } else {
-        root.style.setProperty(`--spell-highlight-color`,  'transparent');
-        root.style.setProperty(`--resource-highlight-color`, 'transparent');
-        root.style.setProperty(`--${type}-highlight-color`, value);
-    }
 }
